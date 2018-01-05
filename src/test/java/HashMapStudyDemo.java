@@ -11,9 +11,11 @@ import java.util.Map;
  * @author mengxin
  * @version 1.0
  */
-public class HashMapStudy {
+public class HashMapStudyDemo {
     public static void main(String[] arg) {
         Map<String,Integer> test = new HashMap<>();
+        float factor = 0.75f;
+        Map<String,Integer> test2 = new HashMap<>(16, factor);
 
         test.put("KING", 100);
         test.put("CLARK", 99);
