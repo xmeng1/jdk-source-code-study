@@ -1,6 +1,6 @@
-package science.mengxin.learning.thread;
+package science.mengxin.learning.thread.creatingThreads.helloWorld;
 
-public class RealHelloWorldMultithreaded
+public class RealHelloWorldMultithreadedCallRunWithId
 {
 	public static class Greeter extends Thread
 	{
@@ -12,12 +12,12 @@ public class RealHelloWorldMultithreaded
 			this.country = country;
 		}
 
-		@Override
 		public void run()
 		{
-			//System.out.println("Hello " + country + "!");
+			// Use Thread.currentThread() to get the Thread instance for the running thread
+			// Why do you think long id = getId() gives a different result?
 			long id = Thread.currentThread().getId();
-
+			
 			System.out.println(id + ": Hello " + country + "!");
 		}
 	}
@@ -28,7 +28,7 @@ public class RealHelloWorldMultithreaded
 
 		for (String country : countries)
 		{
-			new Greeter(country).start();
+			new Greeter(country).run(); // Calls run() directly instead of start() (don't do this!)
 		}
 	}
 }

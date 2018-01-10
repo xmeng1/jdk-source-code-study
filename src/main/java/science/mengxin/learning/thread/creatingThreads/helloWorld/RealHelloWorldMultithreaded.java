@@ -1,4 +1,4 @@
-package science.mengxin.learning.thread;
+package science.mengxin.learning.thread.creatingThreads.helloWorld;
 
 public class RealHelloWorldMultithreaded
 {
@@ -12,13 +12,9 @@ public class RealHelloWorldMultithreaded
 			this.country = country;
 		}
 
-		@Override
 		public void run()
 		{
-			//System.out.println("Hello " + country + "!");
-			long id = Thread.currentThread().getId();
-
-			System.out.println(id + ": Hello " + country + "!");
+			System.out.println("Hello " + country + "!");
 		}
 	}
 

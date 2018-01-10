@@ -1,6 +1,6 @@
-package science.mengxin.learning.thread;
+package science.mengxin.learning.thread.creatingThreads.helloWorld;
 
-public class RealHelloWorldMultithreaded
+public class RealHelloWorldMultithreadedCallRun
 {
 	public static class Greeter extends Thread
 	{
@@ -12,13 +12,9 @@ public class RealHelloWorldMultithreaded
 			this.country = country;
 		}
 
-		@Override
 		public void run()
 		{
-			//System.out.println("Hello " + country + "!");
-			long id = Thread.currentThread().getId();
-
-			System.out.println(id + ": Hello " + country + "!");
+			System.out.println("Hello " + country + "!");
 		}
 	}
 
@@ -28,7 +24,7 @@ public class RealHelloWorldMultithreaded
 
 		for (String country : countries)
 		{
-			new Greeter(country).start();
+			new Greeter(country).run(); // Calls run() directly instead of start() (don't do this!)
 		}
 	}
 }
