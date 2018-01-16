@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * User:    mengxin
  * Date:    07/01/2018
- * Project: jdk-source-code-study
+ * Project: jdk_study-source-code-study
  * Package: science.mengxin.utilities
  * Description: HashCodeUtil.
  *

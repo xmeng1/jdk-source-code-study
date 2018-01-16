@@ -1,7 +1,7 @@
 /**
  * User:    mengxin
  * Date:    09/01/2018
- * Project: jdk-source-code-study
+ * Project: jdk_study-source-code-study
  * Package: PACKAGE_NAME
  * Description: ThreadDemo.
  *

@@ -1,4 +1,4 @@
-import science.mengxin.jdk.StringStudy
+import science.mengxin.jdk_study.StringStudy
 import spock.lang.Specification
 import spock.lang.Unroll
 

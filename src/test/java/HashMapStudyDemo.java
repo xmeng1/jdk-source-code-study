@@ -4,7 +4,7 @@ import java.util.Map;
 /**
  * User:    mengxin
  * Date:    02/01/2018
- * Project: jdk-source-code-study
+ * Project: jdk_study-source-code-study
  * Package: PACKAGE_NAME
  * Description: HashMapStudy.
  *

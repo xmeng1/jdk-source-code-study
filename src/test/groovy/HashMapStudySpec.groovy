@@ -1,10 +1,10 @@
-import science.mengxin.jdk.HashMapStudy
+import science.mengxin.jdk_study.HashMapStudy
 import spock.lang.*
 
 /**
  * User:    mengxin
  * Date:    05/01/2018
- * Project: jdk-source-code-study
+ * Project: jdk_study-source-code-study
  * Package: 
  * Description: HashMapStudySpec.
  * @author mengxin
