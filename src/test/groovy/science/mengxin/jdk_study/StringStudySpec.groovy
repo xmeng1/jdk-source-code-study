@@ -1,13 +1,13 @@
-import science.mengxin.jdk_study.StringStudy
+package science.mengxin.jdk_study
+
 import spock.lang.Specification
 import spock.lang.Unroll
-
 /**
  * User:    mengxin
  * Date:    06/01/2018
  * Project: Default (Template) Project
  * Package: 
- * Description: StringStudySpec.
+ * Description: science.mengxin.jdk_study.StringStudySpec.
  * @author mengxin
  * @version 1.0
  */
