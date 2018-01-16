@@ -1,10 +1,10 @@
-package science.mengxin.jdk_study;
+package science.mengxin.jdk;
 
 /**
  * User:    mengxin
  * Date:    05/01/2018
- * Project: jdk_study-source-code-study
- * Package: science.mengxin.jdk_study
+ * Project: jdk-source-code-study
+ * Package: science.mengxin.jdk
  * Description: HashMapStudy.
  *
  * @author mengxin

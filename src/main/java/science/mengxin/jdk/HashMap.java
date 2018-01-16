@@ -49,7 +49,7 @@
 // import java.util.function.BiFunction;
 // import java.util.function.Consumer;
 // import java.util.function.Function;
-// import jdk_study.internal.misc.SharedSecrets;
+// import jdk.internal.misc.SharedSecrets;
 //
 // /**
 //  * Hash table based implementation of the {@code Map} interface.  This

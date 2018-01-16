@@ -1,4 +1,4 @@
-package science.mengxin.jdk_study
+package science.mengxin.jdk
 
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -7,7 +7,7 @@ import spock.lang.Unroll
  * Date:    06/01/2018
  * Project: Default (Template) Project
  * Package: 
- * Description: science.mengxin.jdk_study.StringStudySpec.
+ * Description: science.mengxin.jdk.StringStudySpec.
  * @author mengxin
  * @version 1.0
  */

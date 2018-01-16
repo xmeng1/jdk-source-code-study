@@ -1,20 +1,20 @@
-package science.mengxin.jdk_study
+package science.mengxin.jdk
 
 import spock.lang.*
 
 /**
  * User:    mengxin
  * Date:    05/01/2018
- * Project: jdk_study-source-code-study
+ * Project: jdk-source-code-study
  * Package: 
- * Description: science.mengxin.jdk_study.HashMapStudySpec.
+ * Description: science.mengxin.jdk.HashMapStudySpec.
  * @author mengxin
  * @version 1.0
  */
 
 @Narrative("""
 """)
-@Title("Unit test for science.mengxin.jdk_study.HashMapStudySpec")
+@Title("Unit test for science.mengxin.jdk.HashMapStudySpec")
 @Subject(HashMapStudySpec)
 class HashMapStudySpec extends Specification {
 

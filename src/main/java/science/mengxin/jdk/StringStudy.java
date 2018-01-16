@@ -1,4 +1,4 @@
-package science.mengxin.jdk_study;
+package science.mengxin.jdk;
 
 
 import java.util.Arrays;
@@ -6,8 +6,8 @@ import java.util.Arrays;
 /**
  * User:    mengxin
  * Date:    06/01/2018
- * Project: jdk_study-source-code-study
- * Package: science.mengxin.jdk_study
+ * Project: jdk-source-code-study
+ * Package: science.mengxin.jdk
  * Description: StringStudy.
  *
  * @author mengxin
