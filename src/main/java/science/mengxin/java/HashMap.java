@@ -27,17 +27,16 @@ package science.mengxin.java;
 
 import java.io.IOException;
 import java.io.InvalidObjectException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.AbstractMap;
 import java.util.AbstractSet;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.ConcurrentModificationException;
 import java.util.Hashtable;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -48,7 +47,6 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import jdk.internal.misc.SharedSecrets;
 
 /**
  * Hash table based implementation of the {@code Map} interface.  This
@@ -1462,7 +1460,8 @@ public class HashMap<K,V> extends AbstractMap<K,V>
 
             // Check Map.Entry[].class since it's the nearest public type to
             // what we're actually creating.
-            SharedSecrets.getJavaObjectInputStreamAccess().checkArray(s, Entry[].class, cap);
+            getJavaObjectInputStreamAccess().checkArray(s, Entry[].class, cap);
+            // SharedSecrets.getJavaObjectInputStreamAccess().checkArray(s, Entry[].class, cap);
             @SuppressWarnings({"rawtypes","unchecked"})
                 Node<K,V>[] tab = (Node<K,V>[])new Node[cap];
             table = tab;
@@ -1477,7 +1476,14 @@ public class HashMap<K,V> extends AbstractMap<K,V>
             }
         }
     }
-
+    private static final Unsafe unsafe = Unsafe.getUnsafe();
+    private static JavaObjectInputStreamAccess javaObjectInputStreamAccess;
+    public static JavaObjectInputStreamAccess getJavaObjectInputStreamAccess() {
+        if (javaObjectInputStreamAccess == null) {
+            unsafe.ensureClassInitialized(ObjectInputStream.class);
+        }
+        return javaObjectInputStreamAccess;
+    }
     /* ------------------------------------------------------------ */
     // iterators
 
@@ -1862,11 +1868,21 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     // Tree bins
 
     /**
+     * HashMap.Node subclass for normal LinkedHashMap entries.
+     */
+    static class Entry2<K,V> extends Node<K,V> {
+        Entry2<K,V> before, after;
+        Entry2(int hash, K key, V value, Node<K,V> next) {
+            super(hash, key, value, next);
+        }
+    }
+
+    /**
      * Entry for Tree bins. Extends LinkedHashMap.Entry (which in turn
      * extends Node) so can be used as extension of either regular or
      * linked node.
      */
-    static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
+    static final class TreeNode<K,V> extends Entry2<K,V> {
         TreeNode<K,V> parent;  // red-black tree links
         TreeNode<K,V> left;
         TreeNode<K,V> right;
