@@ -39,6 +39,12 @@
         </plugins>
     </build>
     <dependencies>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+
         <!--Testing-->
 
         <!--spock-->
