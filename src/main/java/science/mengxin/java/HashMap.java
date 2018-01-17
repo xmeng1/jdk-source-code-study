@@ -25,9 +25,10 @@
 
 package science.mengxin.java;
 
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
 import java.io.IOException;
 import java.io.InvalidObjectException;
-import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -149,7 +150,7 @@ import java.util.function.Function;
  */
 public class HashMap<K,V> extends AbstractMap<K,V>
     implements Map<K,V>, Cloneable, Serializable {
-
+    Log log = LogFactory.get();
     private static final long serialVersionUID = 362498820763181265L;
 
     /*
@@ -485,6 +486,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * (16) and the default load factor (0.75).
      */
     public HashMap() {
+        log.info("The default constructor is invoked");
         this.loadFactor = DEFAULT_LOAD_FACTOR; // all other fields defaulted
     }
 
@@ -621,6 +623,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      *         previously associated {@code null} with {@code key}.)
      */
     public V put(K key, V value) {
+        log.info("put key: {} with value {}", key.toString(), value.toString());
         return putVal(hash(key), key, value, false, true);
     }
 
@@ -1476,11 +1479,11 @@ public class HashMap<K,V> extends AbstractMap<K,V>
             }
         }
     }
-    private static final Unsafe unsafe = Unsafe.getUnsafe();
+    private static final Unsafe unsafe = null; // = Unsafe.getUnsafe();
     private static JavaObjectInputStreamAccess javaObjectInputStreamAccess;
     public static JavaObjectInputStreamAccess getJavaObjectInputStreamAccess() {
         if (javaObjectInputStreamAccess == null) {
-            unsafe.ensureClassInitialized(ObjectInputStream.class);
+            // unsafe.ensureClassInitialized(ObjectInputStream.class);
         }
         return javaObjectInputStreamAccess;
     }
