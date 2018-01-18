@@ -30,14 +30,14 @@ public class BTreePrinter {
         int floor = maxLevel - level + 2;
         int endgeLines = (int) Math.pow(2, (Math.max(floor - 1, 0)));
         int firstSpaces = (int) Math.pow(2, (floor)) - 1;
-        int betweenSpaces = (int) Math.pow(2, (floor + 1)) - 4;
+        int betweenSpaces = (int) Math.pow(2, (floor + 1)) - 3 * floor;
 
         BTreePrinter.printWhitespaces(firstSpaces);
 
         List<TreeNode<K,V>> newNodes = new ArrayList<>();
         for (TreeNode<K,V> node : nodes) {
             if (node != null) {
-                System.out.print(node.getKey() + ":" + node.getValue());
+                System.out.print(node.hash + ":" + node.getKey());
                 newNodes.add(node.left);
                 newNodes.add(node.right);
             } else {

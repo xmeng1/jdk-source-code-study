@@ -25,6 +25,8 @@
 
 package science.mengxin.java;
 
+import static java.lang.System.out;
+
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import java.io.IOException;
@@ -48,9 +50,8 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import science.mengxin.utilities.BTreePrinter;
 
-
-import static java.lang.System.out;
 /**
  * Hash table based implementation of the {@code Map} interface.  This
  * implementation provides all of the optional map operations, and permits
@@ -163,21 +164,30 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     public void logNodesTable () {
         out.println("===================================");
         for(int i= 0; i<table.length; i++) {
-            Node node = table[i];
-            String numberAsString = String.format ("%03d", i);
-            out.print("|\t" + numberAsString + "\t|");
-            if (node != null) {
-                do {
-                    out.print("-> ");
-                    out.print("| ");
-                    out.print("(" + node.hash + ")" + node.key + ":" + node.value);
-                    out.print(" |");
-                    node = node.next;
-                } while (node != null);
-            }else {
-                out.print("-> | null |");
+            if (table[i] instanceof TreeNode) {
+                // print the tree information
+                TreeNode node = (TreeNode) table[i];
+                BTreePrinter.printNode(node);
+            } else {
+                Node node = table[i];
+                String numberAsString = String.format ("%03d", i);
+                out.print("|\t" + numberAsString + "\t|");
+                if (node != null) {
+                    do {
+                        out.print("-> ");
+                        out.print("| ");
+                        out.print("(" + node.hash + ")" + node.key + ":" + node.value);
+                        out.print(" |");
+                        node = node.next;
+                    } while (node != null);
+                }else {
+                    out.print("-> | null |");
+                }
+                out.print("\n");
             }
-            out.print("\n");
+
+
+
         }
     }
 
@@ -325,8 +335,8 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * Basic hash bin node, used for most entries.  (See below for
      * TreeNode subclass, and in LinkedHashMap for its Entry subclass.)
      */
-    static class Node<K,V> implements Entry<K,V> {
-        final int hash;
+    public static class Node<K,V> implements Entry<K,V> {
+        public final int hash;
         final K key;
         V value;
         Node<K,V> next;
@@ -691,8 +701,10 @@ public class HashMap<K,V> extends AbstractMap<K,V>
                 for (int binCount = 0; ; ++binCount) {
                     if ((e = p.next) == null) {
                         p.next = newNode(hash, key, value, null);
-                        if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
+                        if (binCount >= TREEIFY_THRESHOLD - 1) {// -1 for 1st
+                            log.info("Start to treeifyBin - binCount:{}", binCount);
                             treeifyBin(tab, hash);
+                        }
                         break;
                     }
                     if (e.hash == hash &&
@@ -805,8 +817,10 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      */
     final void treeifyBin(Node<K,V>[] tab, int hash) {
         int n, index; Node<K,V> e;
-        if (tab == null || (n = tab.length) < MIN_TREEIFY_CAPACITY)
+        if (tab == null || (n = tab.length) < MIN_TREEIFY_CAPACITY) {
+            log.info("treeifyBin:: start resize tab.length:{} vs MIN_TREEIFY_CAPACITY:{}", String.valueOf(tab.length), String.valueOf(MIN_TREEIFY_CAPACITY));
             resize();
+        }
         else if ((e = tab[index = (n - 1) & hash]) != null) {
             TreeNode<K,V> hd = null, tl = null;
             do {
@@ -1921,13 +1935,13 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * extends Node) so can be used as extension of either regular or
      * linked node.
      */
-    static final class TreeNode<K,V> extends Entry2<K,V> {
-        TreeNode<K,V> parent;  // red-black tree links
-        TreeNode<K,V> left;
-        TreeNode<K,V> right;
-        TreeNode<K,V> prev;    // needed to unlink next upon deletion
+    public static final class TreeNode<K,V> extends Entry2<K,V> {
+        public TreeNode<K,V> parent;  // red-black tree links
+        public TreeNode<K,V> left;
+        public TreeNode<K,V> right;
+        public TreeNode<K,V> prev;    // needed to unlink next upon deletion
         boolean red;
-        TreeNode(int hash, K key, V val, Node<K,V> next) {
+        public TreeNode(int hash, K key, V val, Node<K,V> next) {
             super(hash, key, val, next);
         }
 
