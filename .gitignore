@@ -64,3 +64,6 @@ buildNumber.properties
 !/.mvn/wrapper/maven-wrapper.jar
 
 *.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/markdown-navigator/profiles_settings.xml
