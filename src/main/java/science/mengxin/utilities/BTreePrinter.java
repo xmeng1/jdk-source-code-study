@@ -27,10 +27,10 @@ public class BTreePrinter {
             return;
         }
 
-        int floor = maxLevel - level;
+        int floor = maxLevel - level + 2;
         int endgeLines = (int) Math.pow(2, (Math.max(floor - 1, 0)));
         int firstSpaces = (int) Math.pow(2, (floor)) - 1;
-        int betweenSpaces = (int) Math.pow(2, (floor + 1)) - 1;
+        int betweenSpaces = (int) Math.pow(2, (floor + 1)) - 4;
 
         BTreePrinter.printWhitespaces(firstSpaces);
 
