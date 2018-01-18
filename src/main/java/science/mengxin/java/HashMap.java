@@ -49,6 +49,8 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+
+import static java.lang.System.out;
 /**
  * Hash table based implementation of the {@code Map} interface.  This
  * implementation provides all of the optional map operations, and permits
@@ -150,7 +152,41 @@ import java.util.function.Function;
  */
 public class HashMap<K,V> extends AbstractMap<K,V>
     implements Map<K,V>, Cloneable, Serializable {
+
+
+    /* ---------------- JDK source code study related methods -------------- */
+
     Log log = LogFactory.get();
+    /**
+     * This method is used to print the Node table
+     */
+    public void logNodesTable () {
+        out.println("===================================");
+        for(int i= 0; i<table.length; i++) {
+            Node node = table[i];
+            String numberAsString = String.format ("%03d", i);
+            out.print("|\t" + numberAsString + "\t|");
+            if (node != null) {
+                do {
+                    out.print("-> ");
+                    out.print("| ");
+                    out.print("(" + node.hash + ")" + node.key + ":" + node.value);
+                    out.print(" |");
+                    node = node.next;
+                } while (node != null);
+            }else {
+                out.print("-> | null |");
+            }
+            out.print("\n");
+        }
+    }
+
+
+
+    /* ---------------- END of JDK source code study related methods -------------- */
+
+
+
     private static final long serialVersionUID = 362498820763181265L;
 
     /*

@@ -19,7 +19,24 @@ class SelfHashMapSpec extends Specification {
         when:
         HashMap hashMap = new HashMap()
         hashMap.put("test1","value1")
+        hashMap.logNodesTable()
+
+        hashMap.put("test2","value1")
+        hashMap.logNodesTable()
+
+        hashMap.put("test3","value1")
+        hashMap.logNodesTable()
+
+        hashMap.put("test4","value1")
+        hashMap.logNodesTable()
+
+        hashMap.put("test5","value1")
+        hashMap.logNodesTable()
+
+
+        hashMap.put("test6","value1")
+        hashMap.logNodesTable()
         then:
-        hashMap.size() == 1
+        hashMap.size() == 6
     }
 }
