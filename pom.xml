@@ -6,9 +6,10 @@
 
     <groupId>science.mengxin</groupId>
     <artifactId>jdk-source-code-study</artifactId>
+    <description>This project is used to study the JDK 9.0 source code, I try to simulate the source code and add debug information then use Spock unit test to run with simulated source code to trace the inner information of JDK source code.</description>
     <version>1.0.0-SNAPSHOT</version>
     <properties>
-        <spockframework.version>1.0-groovy-2.4</spockframework.version>
+        <spockframework.version>1.1-groovy-2.4</spockframework.version>
     </properties>
     <!--In order to lock the language level for IDE-->
     <build>
@@ -26,19 +27,45 @@
             <plugin>
                 <groupId>org.codehaus.gmavenplus</groupId>
                 <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.5</version>
+                <version>1.6</version>
                 <executions>
                     <execution>
                         <goals>
+                            <goal>addTestSources</goal>
                             <goal>compile</goal>
-                            <goal>testCompile</goal>
+                            <goal>compileTests</goal>
+                            <!--<goal>testCompile</goal>-->
                         </goals>
                     </execution>
                 </executions>
             </plugin>
+
+            <!--If you want to use maven to run the spock test,
+            need this plugin and the right include files-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18</version>
+                <configuration>
+                    <includes>
+                        <!-- By default only files ending in 'Test' will be included, so also include support for Spock style naming convention -->
+                        <!-- Oddly enough for Groovy files, *Spec.groovy does not work, but *Spec.java does -->
+                        <include>**/*Test.java</include>
+                        <include>**/*Spec.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.4.13</version>
+            <!--<version>3.0.0-alpha-1</version>-->
+        </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
