@@ -1,0 +1,59 @@
+HashMap: The default constructor is invoked: HashMap
+HashMap: put key: test1 with value value1
+HashMap: putVal: p is current check node in the tab. e is the existing target node
+HashMap: putVal: put key: test1 (hash is 110250829) with value value1
+HashMap: putVal: if table == null true or table.length == 0 0, tab need to resize()
+HashMap: putVal: if table[13] is null and insert directly
+HashMap: putVal: afterNodeInsertion callback invoked!! evict: true
+HashMap: put key: test2 with value value2
+HashMap: putVal: p is current check node in the tab. e is the existing target node
+HashMap: putVal: put key: test2 (hash is 110250866) with value value2
+HashMap: putVal: if table[2] is null and insert directly
+HashMap: putVal: afterNodeInsertion callback invoked!! evict: true
+HashMap: put key: test1 with value modified_value1
+HashMap: putVal: p is current check node in the tab. e is the existing target node
+HashMap: putVal: put key: test1 (hash is 110250829) with value modified_value1
+HashMap: putVal: if key test1 has exist, replace the value(the real new assign in e null check block), then e point p
+HashMap: putVal: e is not null which mean that find a existing node whose key is same with insert key
+HashMap: putVal: onlyIfAbsent is true or oldValue is null, replace the value
+HashMap: putVal: afterNodeAccess callback invoked!! p: test1=modified_value1
+HashMap: put key: AaAaAaAaAa with value AaAaAaAaAa
+HashMap: putVal: p is current check node in the tab. e is the existing target node
+HashMap: putVal: put key: AaAaAaAaAa (hash is 341679389) with value AaAaAaAaAa
+HashMap: putVal: if p is Linked Node, put value to the end of link
+HashMap: putVal-insert-link: binCount:0, p.next is null? true
+HashMap: putVal-insert-link: p.next is null and insert the node to the end, use e as the bridge to continue track link node
+HashMap: putVal: afterNodeInsertion callback invoked!! evict: true
+HashMap: put key: AaAaAaAaBB with value AaAaAaAaBB
+HashMap: putVal: p is current check node in the tab. e is the existing target node
+HashMap: putVal: put key: AaAaAaAaBB (hash is 341679389) with value AaAaAaAaBB
+HashMap: putVal: if p is Linked Node, put value to the end of link
+HashMap: putVal-insert-link: binCount:0, p.next is null? false
+HashMap: putVal-insert-link: next node in link
+HashMap: putVal-insert-link: binCount:1, p.next is null? true
+HashMap: putVal-insert-link: p.next is null and insert the node to the end, use e as the bridge to continue track link node
+HashMap: putVal: afterNodeInsertion callback invoked!! evict: true
+HashMap: put key: AaAaAaBBAa with value AaAaAaBBAa
+HashMap: putVal: p is current check node in the tab. e is the existing target node
+HashMap: putVal: put key: AaAaAaBBAa (hash is 341679389) with value AaAaAaBBAa
+HashMap: putVal: if p is Linked Node, put value to the end of link
+HashMap: putVal-insert-link: binCount:0, p.next is null? false
+HashMap: putVal-insert-link: next node in link
+HashMap: putVal-insert-link: binCount:1, p.next is null? false
+HashMap: putVal-insert-link: next node in link
+HashMap: putVal-insert-link: binCount:2, p.next is null? true
+HashMap: putVal-insert-link: p.next is null and insert the node to the end, use e as the bridge to continue track link node
+HashMap: putVal: afterNodeInsertion callback invoked!! evict: true
+HashMap: put key: AaAaAaBBBB with value AaAaAaBBBB
+HashMap: putVal: p is current check node in the tab. e is the existing target node
+HashMap: putVal: put key: AaAaAaBBBB (hash is 341679389) with value AaAaAaBBBB
+HashMap: putVal: if p is Linked Node, put value to the end of link
+HashMap: putVal-insert-link: binCount:0, p.next is null? false
+HashMap: putVal-insert-link: next node in link
+HashMap: putVal-insert-link: binCount:1, p.next is null? false
+HashMap: putVal-insert-link: next node in link
+HashMap: putVal-insert-link: binCount:2, p.next is null? false
+HashMap: putVal-insert-link: next node in link
+HashMap: putVal-insert-link: binCount:3, p.next is null? true
+HashMap: putVal-insert-link: p.next is null and insert the node to the end, use e as the bridge to continue track link node
+HashMap: putVal: afterNodeInsertion callback invoked!! evict: true

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GrepConsole">
+    <option name="pinnedGrepConsolesState">
+      <PinnedGrepConsolesState>
+        <option name="map">
+          <map>
+            <entry>
+              <key>
+                <RunConfigurationRef>
+                  <option name="icon" value="junit.png" />
+                  <option name="name" value="SelfHashMapSpec.test putValue in  HashMap" />
+                </RunConfigurationRef>
+              </key>
+              <value>
+                <Pins>
+                  <option name="pins">
+                    <list>
+                      <Pin>
+                        <option name="consoleUUID" value="bd211b2f-d4dc-4c09-992d-eecfbf5d91cd" />
+                        <option name="grepModel">
+                          <GrepModel>
+                            <option name="expression" value="science.mengxin.java.HashMap" />
+                            <option name="unlessExpression" value="" />
+                          </GrepModel>
+                        </option>
+                      </Pin>
+                    </list>
+                  </option>
+                </Pins>
+              </value>
+            </entry>
+            <entry>
+              <key>
+                <RunConfigurationRef>
+                  <option name="icon" value="junit.png" />
+                  <option name="name" value="SelfHashMapSpec.test putValue in HashMap" />
+                </RunConfigurationRef>
+              </key>
+              <value>
+                <Pins>
+                  <option name="pins">
+                    <list>
+                      <Pin>
+                        <option name="consoleUUID" value="26de15e3-dfcc-468e-a5d7-57a3d482b4cc" />
+                        <option name="grepModel">
+                          <GrepModel>
+                            <option name="expression" value="science.mengxin.java.HashMap" />
+                            <option name="unlessExpression" value="" />
+                          </GrepModel>
+                        </option>
+                      </Pin>
+                    </list>
+                  </option>
+                </Pins>
+              </value>
+            </entry>
+          </map>
+        </option>
+      </PinnedGrepConsolesState>
+    </option>
+  </component>
+</project>

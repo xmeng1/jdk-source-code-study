@@ -504,6 +504,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      *         or the load factor is nonpositive
      */
     public HashMap(int initialCapacity, float loadFactor) {
+        log.info("The constructor with initialCapacity: {} & loadFactor: {}", initialCapacity, loadFactor);
         if (initialCapacity < 0)
             throw new IllegalArgumentException("Illegal initial capacity: " +
                                                initialCapacity);
@@ -525,6 +526,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      */
     public HashMap(int initialCapacity) {
         this(initialCapacity, DEFAULT_LOAD_FACTOR);
+        log.info("The constructor with only initialCapacity: {}", initialCapacity);
     }
 
     /**
@@ -532,7 +534,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * (16) and the default load factor (0.75).
      */
     public HashMap() {
-        log.info("The default constructor is invoked");
+        log.info("The default constructor is invoked: HashMap");
         this.loadFactor = DEFAULT_LOAD_FACTOR; // all other fields defaulted
     }
 
@@ -685,45 +687,70 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      */
     final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
                    boolean evict) {
+        log.info("putVal: p is current check node in the tab. e is the existing target node");
         Node<K,V>[] tab; Node<K,V> p; int n, i;
-        if ((tab = table) == null || (n = tab.length) == 0)
+        log.info("putVal: put key: {} (hash is {}) with value {}", key.toString(), hash, value.toString());
+        if ((tab = table) == null || (n = tab.length) == 0) {
+            log.info("putVal: if table == null {} or table.length == 0 {}, tab need to resize()", table==null, table==null?0:table.length);
             n = (tab = resize()).length;
-        if ((p = tab[i = (n - 1) & hash]) == null)
+        }
+        // use & to replace % MODE to get the index of table
+        if ((p = tab[i = (n - 1) & hash]) == null) {
+            log.info("putVal: if table[{}] is null and insert directly", i);
             tab[i] = newNode(hash, key, value, null);
+        }
         else {
             Node<K,V> e; K k;
             if (p.hash == hash &&
-                ((k = p.key) == key || (key != null && key.equals(k))))
+                ((k = p.key) == key || (key != null && key.equals(k)))) {
+                log.info("putVal: if key {} has exist, replace the value(the real new assign in e null check block), then e point p", k);
                 e = p;
-            else if (p instanceof TreeNode)
+            }
+            else if (p instanceof TreeNode) {
+                log.info("putVal: if p is TreeNode, put value to tree node, assign return to e, maybe null or not null");
                 e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
+            }
             else {
+                log.info("putVal: if p is Linked Node, put value to the end of link");
                 for (int binCount = 0; ; ++binCount) {
+                    log.info("putVal-insert-link: binCount:{}, p.next is null? {}", binCount, p.next == null);
                     if ((e = p.next) == null) {
+                        log.info("putVal-insert-link: p.next is null and insert the node to the end, use e as the bridge to continue track link node");
                         p.next = newNode(hash, key, value, null);
                         if (binCount >= TREEIFY_THRESHOLD - 1) {// -1 for 1st
-                            log.info("Start to treeifyBin - binCount:{}", binCount);
+                            log.info("putVal-insert-link: binCount >= TREEIFY_THRESHOLD-1 ({}>={}) "
+                                    + "Start to treeifyBin", binCount, TREEIFY_THRESHOLD-1);
                             treeifyBin(tab, hash);
                         }
                         break;
                     }
                     if (e.hash == hash &&
-                        ((k = e.key) == key || (key != null && key.equals(k))))
+                        ((k = e.key) == key || (key != null && key.equals(k)))) {
+                        log.info("putVal-insert-link: if find the key of node is same with the insert,  replace the value (the real assign in e null check block), the e point to p");
                         break;
+                    }
+                    log.info("putVal-insert-link: next node in link");
                     p = e;
                 }
             }
             if (e != null) { // existing mapping for key
+                log.info("putVal: e is not null which mean that find a existing node whose key is same with insert key");
                 V oldValue = e.value;
-                if (!onlyIfAbsent || oldValue == null)
+                if (!onlyIfAbsent || oldValue == null) {
+                    log.info("putVal: onlyIfAbsent is true or oldValue is null, replace the value");
                     e.value = value;
+                }
+
                 afterNodeAccess(e);
                 return oldValue;
             }
         }
         ++modCount;
-        if (++size > threshold)
+        if (++size > threshold) {
+            log.info("putVal: if ++size > threshold ({}>{}), need to resize", size, threshold);
             resize();
+        }
+
         afterNodeInsertion(evict);
         return null;
     }
@@ -1900,8 +1927,12 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     // Callbacks to allow LinkedHashMap post-actions
-    void afterNodeAccess(Node<K,V> p) { }
-    void afterNodeInsertion(boolean evict) { }
+    void afterNodeAccess(Node<K,V> p) {
+        log.info("putVal: afterNodeAccess callback invoked!! p: {}", p.toString());
+    }
+    void afterNodeInsertion(boolean evict) {
+        log.info("putVal: afterNodeInsertion callback invoked!! evict: {}", evict);
+    }
     void afterNodeRemoval(Node<K,V> p) { }
 
     // Called only from writeObject, to ensure compatible ordering.

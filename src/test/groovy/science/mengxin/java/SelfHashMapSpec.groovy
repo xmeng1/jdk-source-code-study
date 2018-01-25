@@ -55,6 +55,35 @@ class SelfHashMapSpec extends Specification {
 
 
 
+    def "test putValue in HashMap"() {
+        given: "generate list of string with same hashcode"
+        List<String> strList = HashCodeUtil.generateN(5)  // 2 ^ 5 = 32
+        when: "put all the string with same hashcode to HashMap"
+        HashMap hashMap = new HashMap()
+
+        hashMap.put("test1","value1")
+        hashMap.logNodesTable()
+
+        hashMap.put("test2","value2")
+        hashMap.logNodesTable()
+
+        hashMap.put("test1","modified_value1")
+        hashMap.logNodesTable()
+
+        int i = 0
+        for (String obj : strList) {
+            hashMap.put(obj,obj)
+            hashMap.logNodesTable()
+            i++
+            if(i>8){
+                break
+            }
+        }
+
+        then:
+        hashMap.size() != 0
+    }
+
     def "test default HashMap with treeifyBin"() {
         given: "generate list of string with same hashcode"
         List<String> strList = HashCodeUtil.generateN(5)  // 2 ^ 5 = 32
